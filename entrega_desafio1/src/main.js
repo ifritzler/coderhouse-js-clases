@@ -37,7 +37,7 @@ const user = prompt(
     Por favor indiquenos su nombre:
     `,
     'Anonimo'
-);
+) || 'Anonimo';
 
 if (confirm(`Desea continuar a nuestra tienda?`)) {
     alert(
@@ -61,11 +61,13 @@ if (confirm(`Desea continuar a nuestra tienda?`)) {
             } else {
                 alert('Maximo de reintentos fallidos. Recargue la pagina')
                 alert(`Vuelva pronto ${user}`);
+                continuar = false
             }
         }
     }
-
-    mostrarTotales(carrito)
+    if (reintentosFallidos < 3) {
+        mostrarTotales(carrito)
+    }
 
 } else {
     alert(`Vuelva pronto ${user}`);
