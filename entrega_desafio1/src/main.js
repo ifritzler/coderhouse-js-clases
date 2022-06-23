@@ -66,6 +66,21 @@ if (confirm(`Desea continuar a nuestra tienda?`)) {
         }
     }
     if (reintentosFallidos < 3) {
+        let continuar = true;
+        while (continuar == true) {
+            const confirmacionEliminar = confirm('Desea eliminar algun producto del carrito?');
+            if (confirmacionEliminar) {
+                let respuesta = prompt(mostrarProductos(carrito) + "\nSeleccione el producto a eliminar", false);
+                if (respuesta == false || carrito.length <= 0) {
+                    continuar = false
+                } else {
+                    const eliminado = carrito.splice(respuesta - 1, 1)[0]
+                    alert(`El siguiente producto fue eliminado del carrito: \n${stringProducto(eliminado)}`)
+                }
+            } else {
+                continuar = false
+            }
+        }
         mostrarTotales(carrito)
     }
 
